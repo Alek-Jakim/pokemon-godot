@@ -4,6 +4,7 @@ var grid_button_scene = preload("res://scenes/grid_button.tscn")
 var list_button_scene = preload("res://scenes/list_button.tscn")
 
 var current_state: Global.State: set = state_handler
+signal selected(state: Global.State, type)
 
 const main_buttons = {
 	Global.State.ATTACK: "Attack",
@@ -19,6 +20,11 @@ func change_container_visiblity(visibleContainer: Container, invisibleContainer:
 
 func _ready() -> void:
 	current_state = Global.State.MAIN
+	
+# This is to get back to the main menu
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed('ui_cancel'):
+		current_state = Global.State.MAIN
 
 
 func clear_grid_container(container: Container):
@@ -36,7 +42,8 @@ func create_grid_buttons(state: Global.State, data: Dictionary):
 		grid_button.setup(state, key, data[key])
 		$GridContainer.add_child(grid_button)
 		grid_button.connect("press", button_handler)
-		
+	await get_tree().process_frame
+	$GridContainer.get_child(0).grab_focus()
 		
 		
 func create_list_buttons(state: Global.State, data: Array):
@@ -49,10 +56,16 @@ func create_list_buttons(state: Global.State, data: Array):
 		$ScrollContainer/VBoxContainer.add_child(list_button)
 		list_button.setup(state, i)
 		list_button.connect('press', button_handler)
+	await get_tree().process_frame
+	$ScrollContainer/VBoxContainer.get_child(0).grab_focus()
 		
 func button_handler(state, type):
 	if state == Global.State.MAIN:
 		current_state = type
+		if type == Global.State.DEFEND:
+			selected.emit(Global.State.DEFEND, type)
+	else:
+		selected.emit(state, type)
 
 
 func state_handler(value):
@@ -68,8 +81,6 @@ func state_handler(value):
 				monster_attack_names[i] = Global.attack_data[monster_attacks[i]]['name']
 			create_grid_buttons(Global.State.ATTACK, monster_attack_names)
 		
-		Global.State.DEFEND:
-			print('defend')
 		
 		Global.State.ITEM:
 			create_list_buttons(Global.State.ITEM, Global.items)
