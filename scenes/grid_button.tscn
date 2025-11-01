@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d6hdu0ndqpoe"]
+
+[ext_resource type="Script" uid="uid://bfwfwifllkxen" path="res://scenes/grid_button.gd" id="1_65gcf"]
+
+[node name="GridButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"
+script = ExtResource("1_65gcf")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

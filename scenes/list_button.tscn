@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb3xywxr780jr"]
+
+[ext_resource type="Script" uid="uid://c1dirc6iev8bj" path="res://scenes/list_button.gd" id="1_4mtni"]
+[ext_resource type="Texture2D" uid="uid://cbsbocqwdhjn" path="res://graphics/menu sprites/Finsta.png" id="1_oj5gh"]
+
+[node name="ListButton" type="Button"]
+custom_minimum_size = Vector2(180, 100)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_4mtni")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_oj5gh")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Finista"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

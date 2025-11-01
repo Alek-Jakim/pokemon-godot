@@ -1,0 +1,27 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="monster-battle"
+run/main_scene="uid://ls177spv1ls8"
+config/features=PackedStringArray("4.5", "Forward Plus")
+
+[autoload]
+
+Global="*res://Global/Global.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1980
+window/size/window_height_override=1020
+window/stretch/mode="canvas_items"
