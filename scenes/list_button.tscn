@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb3xywxr780jr"]
 
-[ext_resource type="Script" uid="uid://c1dirc6iev8bj" path="res://scenes/list_button.gd" id="1_4mtni"]
+[ext_resource type="Script" uid="uid://c1dirc6iev8bj" path="res://scripts/list_button.gd" id="1_4mtni"]
 [ext_resource type="Texture2D" uid="uid://cbsbocqwdhjn" path="res://graphics/menu sprites/Finsta.png" id="1_oj5gh"]
 
 [node name="ListButton" type="Button"]

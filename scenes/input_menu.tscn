@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5hk10pdw1636"]
 
-[ext_resource type="Script" uid="uid://dunocgg4k6ia7" path="res://scenes/input_menu.gd" id="1_y2k4r"]
+[ext_resource type="Script" uid="uid://dunocgg4k6ia7" path="res://scripts/input_menu.gd" id="1_y2k4r"]
 
 [node name="InputMenu" type="Control"]
 layout_mode = 3

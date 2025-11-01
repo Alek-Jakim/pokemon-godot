@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ls177spv1ls8"]
+[gd_scene load_steps=12 format=3 uid="uid://ls177spv1ls8"]
 
-[ext_resource type="Script" uid="uid://cfii2j4gtxll4" path="res://scenes/game.gd" id="1_p57ef"]
+[ext_resource type="Script" uid="uid://cfii2j4gtxll4" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://ckr0isu4oe6rb" path="res://graphics/backgrounds/background1.png" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://blhlf2b4y0mxn" path="res://graphics/back sprites/Atrox.png" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://e0jsnv0ayrfj" path="res://graphics/battle sprites/Cleaf.png" id="3_lnu2h"]
@@ -11,6 +11,44 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbhrr"]
 atlas = ExtResource("3_lnu2h")
 region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="Animation" id="Animation_u5sy4"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 1]
+}
+
+[sub_resource type="Animation" id="Animation_gee14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gee14"]
+_data = {
+&"RESET": SubResource("Animation_gee14"),
+&"idle": SubResource("Animation_u5sy4")
+}
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -104,5 +142,11 @@ scale = Vector2(4, 4)
 texture = ExtResource("7_u5sy4")
 hframes = 4
 region_rect = Rect2(0, 0, 32, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gee14")
+}
+autoplay = "idle"
 
 [connection signal="selected" from="InputMenu" to="." method="_on_input_menu_selected"]
